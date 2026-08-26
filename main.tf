@@ -42,12 +42,12 @@ module "network" {
 module "compute" {
   source = "./modules/compute"
 
-  web_count            = var.web_count
-  ami_id               = data.aws_ami.amazon_linux.id
-  instance_type        = var.instance_type
-  key_name             = var.key_name
-  public_subnet_id     = module.network.public_subnet_id
-  private_subnet_id    = module.network.private_subnet_id
+  web_count             = var.web_count
+  ami_id                = data.aws_ami.amazon_linux.id
+  instance_type         = var.instance_type
+  key_name              = var.key_name
+  public_subnet_id      = module.network.public_subnet_id
+  private_subnet_id     = module.network.private_subnet_id
   web_security_group_id = module.network.web_security_group_id
   db_security_group_id  = module.network.db_security_group_id
 }
