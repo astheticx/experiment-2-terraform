@@ -111,27 +111,27 @@ resource "aws_security_group" "db" {
   }
 
   egress {
-    description = "Allow DNS UDP outbound"
+    description = "Allow DNS UDP outbound to VPC CIDR"
     from_port   = 53
     to_port     = 53
     protocol    = "udp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [aws_vpc.main.cidr_block]
   }
 
   egress {
-    description = "Allow DNS TCP outbound"
+    description = "Allow DNS TCP outbound to VPC CIDR"
     from_port   = 53
     to_port     = 53
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [aws_vpc.main.cidr_block]
   }
 
   egress {
-    description = "Allow HTTPS outbound"
+    description = "Allow HTTPS outbound to required endpoints"
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [aws_vpc.main.cidr_block]
   }
 
   tags = {
