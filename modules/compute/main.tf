@@ -15,7 +15,7 @@ resource "aws_instance" "web" {
     http_tokens = "required"
   }
 
-  associate_public_ip_address = true
+  associate_public_ip_address = false
 
   user_data = <<-EOF
               #!/bin/bash
