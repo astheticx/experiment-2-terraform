@@ -7,6 +7,14 @@ resource "aws_instance" "web" {
   vpc_security_group_ids = [var.web_security_group_id]
   key_name               = var.key_name
 
+  root_block_device {
+    encrypted = true
+  }
+
+  metadata_options {
+    http_tokens = "required"
+  }
+
   associate_public_ip_address = true
 
   user_data = <<-EOF
@@ -30,6 +38,14 @@ resource "aws_instance" "db" {
   subnet_id              = var.private_subnet_id
   vpc_security_group_ids = [var.db_security_group_id]
   key_name               = var.key_name
+
+  root_block_device {
+    encrypted = true
+  }
+
+  metadata_options {
+    http_tokens = "required"
+  }
 
   tags = {
     Name = "exp2-db"
